@@ -1,0 +1,56 @@
+<form name="saleform" #form="ngForm" autocomplete="nope" (ngSubmit)="onSubmit(form)">
+    <!--visit id-->
+    <input type="" name="VisitId" [ngModel]="saleService.formData.VisitId" />
+
+    <!--customer name-->
+    <div class="form-group">
+
+        <label>Full Name</label>
+        <input name="CustName" #CustName="ngModel" [ngModel]="saleService.formData.CustName" class="form-control" placeholder="Enter full name" minlength="10" maxlength="25" required [ngClass]="{'is-invalid':CustName.touched && CustName.invalid}" />
+        <div class="validation-error" *ngIf="CustName.touched && CustName.invalid">
+            <div *ngIf="CustName.errors.required">
+                First Name is required</div>
+        </div>
+    </div>
+
+    <!--contact person-->
+    <div class="form-group">
+        <label>ContactPerson</label>
+        <input name="ContactPerson" #Designation="ngModel" [(ngModel)]="saleService.formData.ContactPerson" class="form-control" placeholder="Enter Contact Person" minlength="2" maxlength="25" required [ngClass]="{ 'is-invalid': ContactPerson.touched && ContactPerson.invalid }"
+        />
+        <div class="validation-error" *ngIf="ContactPerson.touched 
+        && ContactPerson.invalid">
+            <div *ngIf="ContactPerson.errors.required">ContactPerson is required</div>
+        </div>
+    </div>
+
+    <!--Is Disable-->
+    <br>
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">Is Disable</label>
+            <input type="checkbox" name="IsDisabled" id="IsDisabled" #IsDisabled="ngModel" [(ngModel)]="saleService.formData.IsDisabled" class="form-check-input">
+        </div>
+
+    </div>
+    <br>
+
+    <!--Is Deleted-->
+    <br>
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">Is Delete</label>
+            <input type="checkbox" name="IsDeleted" id="IsDeleted" #IsDeleted="ngModel" [(ngModel)]="saleService.formData.IsDeleted" class="form-check-input">
+        </div>
+
+    </div>
+    <br>
+
+    <!--Submit Button-->
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-lg btn-primary form-control">Submit</button>
+
+
+    </div>
+
+</form>
